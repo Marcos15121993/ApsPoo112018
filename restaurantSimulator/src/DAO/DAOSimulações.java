@@ -39,7 +39,7 @@ public class DAOSimulações {
     
     public void inserirSimulaçãoEspecifica(int pessoas, int pratos, int salada,
             int carboidratos, int proteinas, int suco , int tempoTotal ,double tempoMedio) throws SQLException {
-        String sql = "INSERT INTO Simulação (cod_Simulação, pessoas, pratos , salada , carboidratos , proteinas , suco , tempototal , tempomedio) VALUES ('"
+        String sql = "INSERT INTO Simulação (idsimulacao, pessoas, pratos , salada , carboidratos , proteinas , suco , tempototal , tempomedio) VALUES ('"
                 + pessoas + "',"
                 + pratos + ",'"
                 + salada + "',"
@@ -60,11 +60,11 @@ public class DAOSimulações {
     public simulacao consultaSimulação(int id) throws SQLException {
         simulacao simulação = new simulacao();
 
-        String sql = "SELECT * FROM simulação WHERE cod_simulação = " + id + ";";
+        String sql = "SELECT * FROM simulação WHERE idsimulacao = " + id + ";";
         Statement stm = conexao.getConnection().createStatement();
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        simulação.setId(rs.getInt("cod_simulção"));
+        simulação.setId(rs.getInt("idsimulacao"));
         simulação.setPessoas(rs.getInt("pessoas"));
         simulação.setPratos(rs.getInt("pratos"));
         simulação.setSalada(rs.getInt("salada"));
@@ -84,7 +84,7 @@ public class DAOSimulações {
         ResultSet rs = stm.executeQuery(bd);
         while (rs.next()) {
 
-            simulação.setId(rs.getInt("cod_simulção"));
+            simulação.setId(rs.getInt("idsimulacao"));
             simulação.setPessoas(rs.getInt("pessoas"));
             simulação.setPratos(rs.getInt("pratos"));
             simulação.setSalada(rs.getInt("salada"));

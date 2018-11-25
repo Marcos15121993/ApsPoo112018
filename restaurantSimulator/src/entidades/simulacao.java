@@ -22,7 +22,7 @@ public class simulacao {
             int carboidratos, int proteinas, int suco,
             int tempoTotal, double tempoMedio) {
 
-        simulacao.idsimulacao = idsimulacao;
+        simulacao.idsimulacao = id;
         simulacao.pessoas = pessoas;
         simulacao.pratos = pratos;
         simulacao.salada = salada;
