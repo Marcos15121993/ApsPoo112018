@@ -19,16 +19,16 @@ public class DAOSimulacoes {
     }
 
     //Esse metodo vai cadastrar um endereco e vai retornar o cod_endereco
-    public void inserirSimulação(simulacao simulação) throws SQLException {
-        String sql = "INSERT INTO Simulação ( pessoas, pratos , salada , carboidratos , proteinas , suco , tempototal , tempomedio) VALUES ('"
-                + simulação.getPessoas() + "',"
-                + simulação.getPratos() + ",'"
-                + simulação.getSalada() + "',"
-                + simulação.getCarboidratos() + "',"
-                + simulação.getProteinas() + "',"
-                + simulação.getSuco() + "',"
-                + simulação.getTempoTotal() + "',"
-                + simulação.getTempoMedio() + "';";
+    public void inserirSimulacao(simulacao simulacao) throws SQLException {
+        String sql = "INSERT INTO Simulacao (idsimulacao pessoas, pratos , salada , carboidratos , proteinas , suco , tempototal , tempomedio) VALUES ('"
+                + simulacao.getPessoas() + "',"
+                + simulacao.getPratos() + ",'"
+                + simulacao.getSalada() + "',"
+                + simulacao.getCarboidratos() + "',"
+                + simulacao.getProteinas() + "',"
+                + simulacao.getSuco() + "',"
+                + simulacao.getTempoTotal() + "',"
+                + simulacao.getTempoMedio() + "';";
 
         Statement stm = conexao.getConnection().createStatement();
         stm.execute(sql);
@@ -37,9 +37,9 @@ public class DAOSimulacoes {
     }
     
     
-    public void inserirSimulaçãoEspecifica(int pessoas, int pratos, int salada,
+    public void inserirSimulacaoEspecifica(int pessoas, int pratos, int salada,
             int carboidratos, int proteinas, int suco , int tempoTotal ,double tempoMedio) throws SQLException {
-        String sql = "INSERT INTO Simulação (idsimulacao, pessoas, pratos , salada , carboidratos , proteinas , suco , tempototal , tempomedio) VALUES ('"
+        String sql = "INSERT INTO Simulacao (idsimulacao, pessoas, pratos , salada , carboidratos , proteinas , suco , tempototal , tempomedio) VALUES ('"
                 + pessoas + "',"
                 + pratos + ",'"
                 + salada + "',"
@@ -57,43 +57,43 @@ public class DAOSimulacoes {
     
     
     
-    public simulacao consultaSimulação(int id) throws SQLException {
-        simulacao simulação = new simulacao();
+    public simulacao consultaSimulacao(int id) throws SQLException {
+        simulacao simulacao = new simulacao();
 
-        String sql = "SELECT * FROM simulação WHERE idsimulacao = " + id + ";";
+        String sql = "SELECT * FROM simulacao WHERE idsimulacao = " + id + ";";
         Statement stm = conexao.getConnection().createStatement();
         ResultSet rs = stm.executeQuery(sql);
         rs.next();
-        simulação.setId(rs.getInt("idsimulacao"));
-        simulação.setPessoas(rs.getInt("pessoas"));
-        simulação.setPratos(rs.getInt("pratos"));
-        simulação.setSalada(rs.getInt("salada"));
-        simulação.setCarboidratos(rs.getInt("carboidratos"));
-        simulação.setProteinas(rs.getInt("proteinas"));
-        simulação.setSuco(rs.getInt("suco"));
-        simulação.setTempoTotal(rs.getInt("tempototal"));
-        simulação.setTempoMedio(rs.getInt("tempomedio"));
-        return simulação;
+        simulacao.setId(rs.getInt("idsimulacao"));
+        simulacao.setPessoas(rs.getInt("pessoas"));
+        simulacao.setPratos(rs.getInt("pratos"));
+        simulacao.setSalada(rs.getInt("salada"));
+        simulacao.setCarboidratos(rs.getInt("carboidratos"));
+        simulacao.setProteinas(rs.getInt("proteinas"));
+        simulacao.setSuco(rs.getInt("suco"));
+        simulacao.setTempoTotal(rs.getInt("tempototal"));
+        simulacao.setTempoMedio(rs.getInt("tempomedio"));
+        return simulacao;
     }
 
     public simulacao consultaTodasSimulação() throws SQLException {
-        simulacao simulação = new simulacao();
+        simulacao simulacao = new simulacao();
         List<simulacao> lista = new ArrayList();
-        String bd = "SELECT * FROM simulação;";
+        String bd = "SELECT * FROM simulacao;";
         Statement stm = conexao.getConnection().createStatement();
         ResultSet rs = stm.executeQuery(bd);
         while (rs.next()) {
 
-            simulação.setId(rs.getInt("idsimulacao"));
-            simulação.setPessoas(rs.getInt("pessoas"));
-            simulação.setPratos(rs.getInt("pratos"));
-            simulação.setSalada(rs.getInt("salada"));
-            simulação.setCarboidratos(rs.getInt("carboidratos"));
-            simulação.setProteinas(rs.getInt("proteinas"));
-            simulação.setSuco(rs.getInt("suco"));
-            simulação.setTempoTotal(rs.getInt("tempototal"));
-            simulação.setTempoMedio(rs.getInt("tempomedio"));
-            return simulação;
+            simulacao.setId(rs.getInt("idsimulacao"));
+            simulacao.setPessoas(rs.getInt("pessoas"));
+            simulacao.setPratos(rs.getInt("pratos"));
+            simulacao.setSalada(rs.getInt("salada"));
+            simulacao.setCarboidratos(rs.getInt("carboidratos"));
+            simulacao.setProteinas(rs.getInt("proteinas"));
+            simulacao.setSuco(rs.getInt("suco"));
+            simulacao.setTempoTotal(rs.getInt("tempototal"));
+            simulacao.setTempoMedio(rs.getInt("tempomedio"));
+            return simulacao;
         }
         return null;
     }

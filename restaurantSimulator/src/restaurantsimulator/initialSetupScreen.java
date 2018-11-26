@@ -1,6 +1,7 @@
 package restaurantsimulator;
 
 import Algoritmo.Algoritmo;
+import DAO.DAOSimulacoes;
 import entidades.simulacao;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -153,14 +154,15 @@ public class initialSetupScreen extends Application {
             public void handle(ActionEvent event) {
                 simulacao s = new simulacao();
                 s.setPessoas(Integer.valueOf(txQTDPessoas.getText()));
-               //todos os set
-                
+                s.setPratos(Integer.valueOf(txQTDPratos.getText()));
+                s.setSalada(Integer.valueOf(txQTDPratos.getText()));
+                s.setCarboidratos(Integer.valueOf(txQTDPratos.getText()));
+                s.setProteinas(Integer.valueOf(txQTDPratos.getText()));
+                s.setSuco(Integer.valueOf(txQTDPratos.getText()));
                 Algoritmo alg = new Algoritmo ();
                 s = alg.metodoSimulador(s);
                 
-                //DAOSimulacoessalva(s);
-                
-               new resultScreen().start(stage);
+                new resultScreen().start(stage);
             }
         });
     }
