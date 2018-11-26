@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DAOSimulações {
+public class DAOSimulacoes {
 
     private conexao conexao;
     private String sql;
 
-    public DAOSimulações() throws ClassNotFoundException, IllegalAccessException, InstantiationException,SQLException {
+    public DAOSimulacoes() throws ClassNotFoundException, IllegalAccessException, InstantiationException,SQLException {
         conexao = new conexao();
     }
 

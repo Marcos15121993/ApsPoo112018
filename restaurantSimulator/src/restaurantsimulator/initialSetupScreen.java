@@ -1,5 +1,7 @@
 package restaurantsimulator;
 
+import Algoritmo.Algoritmo;
+import entidades.simulacao;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -149,6 +151,15 @@ public class initialSetupScreen extends Application {
         btSimular.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                simulacao s = new simulacao();
+                s.setPessoas(Integer.valueOf(txQTDPessoas.getText()));
+               //todos os set
+                
+                Algoritmo alg = new Algoritmo ();
+                s = alg.metodoSimulador(s);
+                
+                //DAOSimulacoessalva(s);
+                
                new resultScreen().start(stage);
             }
         });

@@ -13,11 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import DAO.DAOSimulacoes;
 
 /**
  *
- * @author Daniel Dalpasquale
- * @RA 2003244
  *
  */
 public class resultScreen extends Application {
@@ -183,6 +182,8 @@ public class resultScreen extends Application {
         btSalvarNoBanco.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                
+                
                 System.out.println("simular");
             }
         });
