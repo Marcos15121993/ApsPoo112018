@@ -19,7 +19,7 @@ public class homeScreen extends Application {
     private Scene       scene;
     private AnchorPane  pane;
     private Label       lbInitialSetupScreen;
-    private Button      btStartSigning, btSearchResults;
+    private Button      btStartSigning, btSearchResults, btExit;
 
     @Override
     public void start(Stage stage) {
@@ -38,9 +38,10 @@ public class homeScreen extends Application {
         
         btStartSigning          = new Button    ("     Iniciar Simulação    ");
         btSearchResults         = new Button    ("    Consulta de Resultados       ");
+        btExit                  = new Button    ("Sair");
         lbInitialSetupScreen    = new Label     ("Tela Inicial");
         
-        pane.getChildren().addAll(btStartSigning , btSearchResults , lbInitialSetupScreen);
+        pane.getChildren().addAll(btStartSigning , btSearchResults , lbInitialSetupScreen, btExit);
         stage.setScene(scene);
     }
 
@@ -50,6 +51,8 @@ public class homeScreen extends Application {
         btStartSigning.setLayoutY(100);
         btSearchResults.setLayoutX(btStartSigning.getLayoutX() );
         btSearchResults.setLayoutY(btStartSigning.getLayoutY() + 40);
+        btExit.setLayoutX(700);
+        btExit.setLayoutY(250);
     }
 
     public void iniListeners() {
@@ -66,6 +69,14 @@ public class homeScreen extends Application {
                 new queryScreenResults().start(stage);
             }
         });
+        
+        btExit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                new Login().start(stage);
+            }
+        });
+
 
     }
 
