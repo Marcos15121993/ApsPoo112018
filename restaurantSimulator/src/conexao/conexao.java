@@ -13,7 +13,7 @@ public class conexao{
     private Connection connection = null;
 
     public conexao() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        String databaseURL = "jdbc:postgresql://localhost/simuladorderestaurante";
+        String databaseURL = "jdbc:postgresql://localhost/simulator";
         String usuario = "postgres";
         String senha = "2415";
         String driverName = "org.postgresql.Driver";

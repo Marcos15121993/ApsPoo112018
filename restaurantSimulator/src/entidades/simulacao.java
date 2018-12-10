@@ -11,13 +11,10 @@ import java.util.List;
 public class simulacao {
 
     private static int idsimulacao, pessoas, pratos, salada, carboidratos,
-            proteinas, suco, tempoTotal;
+            proteinas, suco, tempoMinimo, tempoMaximo, tempoTotal;
     private static double tempoMedio;
-
-    public simulacao() {
-
-    }
-
+    private simulacao simulacao;
+    
     public simulacao(int id, int pessoas, int pratos, int salada,
             int carboidratos, int proteinas, int suco,
             int tempoTotal, double tempoMedio) {
@@ -31,8 +28,41 @@ public class simulacao {
         simulacao.suco = suco;
         simulacao.tempoTotal = tempoTotal;
         simulacao.tempoMedio = tempoMedio;
+        simulacao.tempoMinimo = tempoMinimo;
+        simulacao.tempoMaximo = tempoMaximo;
 
     }
+    
+    
+    public static int getIdsimulacao() {
+        return idsimulacao;
+    }
+
+    public static void setIdsimulacao(int aIdsimulacao) {
+        idsimulacao = aIdsimulacao;
+    }
+
+    public static int getTempoMinimo() {
+        return tempoMinimo;
+    }
+
+    public static void setTempoMinimo(int aTempoMinimo) {
+        tempoMinimo = aTempoMinimo;
+    }
+
+    public static int getTempoMaximo() {
+        return tempoMaximo;
+    }
+
+    public static void setTempoMaximo(int aTempoMaximo) {
+        tempoMaximo = aTempoMaximo;
+    }
+
+    public simulacao() {
+
+    }
+
+    
 
     public int getPessoas() {
         return pessoas;
@@ -94,6 +124,7 @@ public class simulacao {
         return tempoMedio;
     }
 
+    
     public void setTempoMedio(double tempoMedio) {
         simulacao.tempoMedio = tempoMedio;
     }
@@ -106,4 +137,12 @@ public class simulacao {
         simulacao.idsimulacao = id;
     }
 
+    public simulacao getSimulacao() {
+        return simulacao;
+    }
+
+    public void setSimulacao(simulacao simulacao) {
+        this.simulacao = simulacao;
+    }
+    
 }

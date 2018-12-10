@@ -2,6 +2,7 @@ package DAO;
 
 import conexao.conexao;
 import entidades.simulacao;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,34 +21,34 @@ public class DAOSimulacoes {
 
     //Esse metodo vai cadastrar um endereco e vai retornar o cod_endereco
     public void inserirSimulacao(simulacao simulacao) throws SQLException {
-        String sql = "INSERT INTO Simulacao (idsimulacao pessoas, pratos , salada , carboidratos , proteinas , suco , tempototal , tempomedio) VALUES ('"
-                + simulacao.getPessoas() + "',"
-                + simulacao.getPratos() + ",'"
-                + simulacao.getSalada() + "',"
-                + simulacao.getCarboidratos() + "',"
-                + simulacao.getProteinas() + "',"
-                + simulacao.getSuco() + "',"
-                + simulacao.getTempoTotal() + "',"
-                + simulacao.getTempoMedio() + "';";
-
-        Statement stm = conexao.getConnection().createStatement();
-        stm.execute(sql);
-        
-     
+        PreparedStatement sqlStatement = conexao.getConnection().prepareStatement("INSERT INTO simulacao (idsimulacao, pessoas, pratos , salada , carboidratos , proteinas , suco , tempototal , tempomedio)" + 
+                                                                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        sqlStatement.setInt(1, simulacao.getPessoas());
+        sqlStatement.setInt(2, simulacao.getPratos());
+        sqlStatement.setInt(3, simulacao.getSalada());
+        sqlStatement.setInt(4, simulacao.getCarboidratos());
+        sqlStatement.setInt(5, simulacao.getProteinas());
+        sqlStatement.setInt(6, simulacao.getSuco());
+        sqlStatement.setInt(7, simulacao.getPessoas());
+        sqlStatement.setInt(8, simulacao.getTempoTotal());
+        sqlStatement.setDouble(9, simulacao.getTempoMedio());
+       
+        sqlStatement.execute();       
     }
     
     
-    public void inserirSimulacaoEspecifica(int pessoas, int pratos, int salada,
-            int carboidratos, int proteinas, int suco , int tempoTotal ,double tempoMedio) throws SQLException {
-        String sql = "INSERT INTO Simulacao (idsimulacao, pessoas, pratos , salada , carboidratos , proteinas , suco , tempototal , tempomedio) VALUES ('"
-                + pessoas + "',"
-                + pratos + ",'"
-                + salada + "',"
-                + carboidratos + "',"
-                + proteinas + "',"
-                + suco + "',"
-                + tempoTotal + "',"
-                + tempoMedio + "',";
+    public void inserirSimulacaoEspecifica(simulacao b) throws SQLException {
+        String sql = "INSERT INTO simulacao (idsimulacao, pessoas, pratos , salada , carboidratos , proteinas , suco , tempototal , tempomedio , tempominimo , tempomaximo) VALUES ('"
+                + b.getPessoas() + "',"
+                + b.getPratos() + ",'"
+                + b.getSalada() + "',"
+                + b.getCarboidratos() + "',"
+                + b.getProteinas() + "',"
+                + b.getSuco() + "',"
+                + b.getTempoTotal() + "',"
+                + b.getTempoMedio() + "',"
+                + b.getTempoMinimo() + "',"
+                + b.getTempoMaximo() + "';";
 
         Statement stm = conexao.getConnection().createStatement();
         stm.execute(sql);

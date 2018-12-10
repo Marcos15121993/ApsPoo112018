@@ -1,7 +1,8 @@
 package restaurantsimulator;
 
-import Algoritmo.Algoritmo;
+
 import DAO.DAOSimulacoes;
+import entidades.Algoritmo;
 import entidades.simulacao;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -159,6 +160,8 @@ public class initialSetupScreen extends Application {
                 s.setCarboidratos(Integer.valueOf(txQTDPratos.getText()));
                 s.setProteinas(Integer.valueOf(txQTDPratos.getText()));
                 s.setSuco(Integer.valueOf(txQTDPratos.getText()));
+                simulacao.setTempoMinimo(Integer.valueOf(txTempoMinimo.getText()));
+                simulacao.setTempoMaximo(Integer.valueOf(txTempoMaximo.getText()));
                 Algoritmo alg = new Algoritmo ();
                 s = alg.metodoSimulador(s);
                 

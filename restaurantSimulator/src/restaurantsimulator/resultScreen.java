@@ -13,19 +13,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import entidades.simulacao;
+import entidades.Algoritmo;
 import DAO.DAOSimulacoes;
+import java.sql.Statement;
 
-/**
- *
- *
- */
 public class resultScreen extends Application {
     
     private Stage       stage;
     private Scene       scene;
     private AnchorPane  pane;
     private Label       lbTelaDeResultado;
-    
     
     private Label       lbPessoas , lbPratos , lbSaladas , 
                         lbCarboidratos , lbProteinas , lbSuco , 
@@ -39,7 +37,9 @@ public class resultScreen extends Application {
     
   
     private Button      btVoltarPTelaInicial , btSalvarNoBanco;
-
+    
+    
+    
     @Override
     public void start(Stage stage) {
         this.stage = stage;
@@ -54,6 +54,7 @@ public class resultScreen extends Application {
         pane = new AnchorPane();
         pane.setPrefSize(800 , 600);
         scene = new Scene(pane);
+        
 
         
         btVoltarPTelaInicial        = new Button    ("Voltar à Tela Inicial");
@@ -70,17 +71,21 @@ public class resultScreen extends Application {
         lbTempoTotal                = new Label     ("Tempo Total: ");
         lbTempoMedio                = new Label     ("Tempo Medio: ");
         
+            simulacao s = new simulacao();
+            Algoritmo alg = new Algoritmo ();
+            s = alg.metodoSimulador(s);    
         
-        lbQTDCarboidratos           = new Label     ("Carboidratos: ");
-        lbQTDPratos                 = new Label     ("Pratos: ");
-        lbQTDPessoas                = new Label     ("Num.Pessoas: ");
-        lbQTDProteinas              = new Label     ("Proteínas: ");
-        lbQTDSaladas                = new Label     ("Salada: ");
-        lbQTDSuco                   = new Label     ("Suco: ");
-        lbQTDTempoMaximo            = new Label     ("Tempo Minimo de Alimentação: ");
-        lbQTDTempoMinimo            = new Label     ("Tempo Maximo de Alimentação: ");
-        lbQTDTempoTotal             = new Label     ("Tempo Total: ");
-        lbQTDTempoMedio             = new Label     ("Tempo Medio: ");
+        lbQTDCarboidratos           = new Label     ("" + s.getCarboidratos());
+        lbQTDPratos                 = new Label     ("" + s.getPratos());
+        lbQTDPessoas                = new Label     ("" + s.getPessoas());
+        lbQTDProteinas              = new Label     ("" + s.getProteinas());
+        lbQTDSaladas                = new Label     ("" + s.getSalada());
+        lbQTDSuco                   = new Label     ("" + s.getSuco());
+        lbQTDTempoTotal             = new Label     ("" + s.getTempoTotal());
+        lbQTDTempoMedio             = new Label     ("" + s.getTempoMedio());
+        
+        lbQTDTempoMaximo            = new Label     ("" + s.getTempoMaximo());
+        lbQTDTempoMinimo            = new Label     ("" + s.getTempoMinimo());
         
         
         pane.getChildren().addAll(
@@ -150,7 +155,7 @@ public class resultScreen extends Application {
         lbQTDTempoMaximo.setLayoutX(    lbQTDCarboidratos.getLayoutX());
         lbQTDTempoMinimo.setLayoutX(    lbQTDCarboidratos.getLayoutX());
         lbQTDTempoMedio.setLayoutX(     lbQTDCarboidratos.getLayoutX());
-        lbQTDTempoTotal.setLayoutX(    lbQTDCarboidratos.getLayoutX());
+        lbQTDTempoTotal.setLayoutX(     lbQTDCarboidratos.getLayoutX());
        
         lbQTDPessoas.setLayoutY(150);
         lbQTDPratos.setLayoutY(         lbQTDPessoas.getLayoutY()       + 30);
@@ -171,21 +176,29 @@ public class resultScreen extends Application {
 
     public void iniListeners() {
 
-        btVoltarPTelaInicial.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                new homeScreen().start(stage);
-
-            }
+        btVoltarPTelaInicial.setOnAction((ActionEvent event) -> {
+            new homeScreen().start(stage);
         });
         
-        btSalvarNoBanco.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                
-                
-                System.out.println("simular");
+        btSalvarNoBanco.setOnAction((ActionEvent event) -> {
+            simulacao s = new simulacao();
+            System.out.println("hehe");
+            Algoritmo alg = new Algoritmo ();
+            System.out.println("algori");
+            s = alg.metodoSimulador(s);
+            System.out.println("asldkjlasdj");
+            
+            try{
+                System.out.println("alo");
+                DAOSimulacoes daoSimulacoes = new DAOSimulacoes();
+                System.out.println("vou gravar");
+                daoSimulacoes.inserirSimulacao(s);
+                System.out.println("gravei");
+            }catch(Exception e){
+                e.printStackTrace();
             }
+            
+
         });
     }
     
